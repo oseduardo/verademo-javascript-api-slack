@@ -1,0 +1,48 @@
+name: Veracode SAST - Pipeline Scan
+
+on:
+    push:
+        branches:
+        - '*'
+
+jobs:
+
+    Build:
+        runs-on: ubuntu-latest
+        steps:
+
+          - name: Downloading Veracode CLI
+            run: |
+              echo '[INFO] --- Downloading Veracode CLI (Latest Version)...'
+              curl -fsS -O https://tools.veracode.com/veracode-cli/install
+              chmod +x ./install
+              ./install
+              if [ -f "./veracode" ]; then
+                chmod +x veracode
+                ./veracode version
+              else
+                echo "[ERROR] Veracode CLI was not successfully installed!"
+                exit 1
+              fi
+
+          - name: Packaging Artifacts
+            run: |
+              echo "[INFO] --- Packaging artifacts to be scanned"
+              export VERACODE_API_KEY_ID=$VID
+              export VERACODE_API_KEY_SECRET=$VKEY
+              ./veracode package --source . --output ./verascan/ --trust
+              ls -all ./verascan/
+            env:
+              VID: ${{ SECRETS.VID }}
+              VKEY: ${{ SECRETS.VKEY }}
+
+          - name: Running Veracode SAST - Pipeline Scan
+            run: |
+              echo "[INFO] --- Running Veracode SAST - Pipeline Scan"
+              export VERACODE_API_KEY_ID=$VID
+              export VERACODE_API_KEY_SECRET=$VKEY
+              ./veracode static scan ./verascan/veracode-auto-pack-*-js.zip --results-file ./scanresults/results.json --summary-output ./scanresults/summary_results.txt --fail-on-severity "Very High, High"
+            env:
+              VID: ${{ SECRETS.VID }}
+              VKEY: ${{ SECRETS.VKEY }}
+

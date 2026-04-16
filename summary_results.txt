@@ -1,0 +1,37 @@
+Scan Summary:
+STATIC_ENGINE_VERSION: 20260330221423
+SCAN_ID: ee18f620-8521-4fc5-808e-a8b788a060e3 
+SCAN_STATUS: SUCCESS 
+SCAN_MESSAGE: Scan successful. Results size: 160628 bytes 
+
+Found 1 scannable module:
+  - JS files within veracode-auto-pack-verademo-javascript-api-slack-js.zip
+Analyzed 1 scannable module:
+  - JS files within veracode-auto-pack-verademo-javascript-api-slack-js.zip
+
+Skipping 1 issue of LOW severity.
+Skipping 12 issue of MEDIUM severity.
+Found 19 issues total
+
+Found 1 issue of VERY HIGH severity
+CWE-78: Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection'): services/admin.service.js:6
+
+Found 18 issues of HIGH severity
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): tools/checkUserToken.js:16
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:23
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:40
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:46
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:57
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:83
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:89
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:99
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:174
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:190
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:221
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:347
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:360
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/users.service.js:416
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/posts.service.js:38
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/posts.service.js:70
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/posts.service.js:87
+CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection'): services/posts.service.js:109
