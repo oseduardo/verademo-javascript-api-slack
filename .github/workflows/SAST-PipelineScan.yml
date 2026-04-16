@@ -31,12 +31,10 @@ jobs:
 
           - name: Packaging Artifacts
             run: |
-              ls -all
               echo "[INFO] --- Packaging artifacts to be scanned"
               export VERACODE_API_KEY_ID=$VID
               export VERACODE_API_KEY_SECRET=$VKEY
               ./veracode package --source . --output ./verascan/ --trust
-              ls -all ./verascan/
             env:
               VID: ${{ SECRETS.VID }}
               VKEY: ${{ SECRETS.VKEY }}
@@ -46,7 +44,8 @@ jobs:
               echo "[INFO] --- Running Veracode SAST - Pipeline Scan"
               export VERACODE_API_KEY_ID=$VID
               export VERACODE_API_KEY_SECRET=$VKEY
-              ./veracode static scan ./verascan/veracode-auto-pack-*-js.zip --results-file ./scanresults/results.json --summary-output ./scanresults/summary_results.txt --fail-on-severity "Very High, High"
+              ./veracode static scan ./verascan/veracode-auto-pack-*-js.zip --results-file results.json --summary-output summary_results.txt --fail-on-severity "Very High, High"
+              cat summary_results.txt
             env:
               VID: ${{ SECRETS.VID }}
               VKEY: ${{ SECRETS.VKEY }}
