@@ -27,6 +27,7 @@ jobs:
 
           - name: Packaging Artifacts
             run: |
+              ls -all
               echo "[INFO] --- Packaging artifacts to be scanned"
               export VERACODE_API_KEY_ID=$VID
               export VERACODE_API_KEY_SECRET=$VKEY
