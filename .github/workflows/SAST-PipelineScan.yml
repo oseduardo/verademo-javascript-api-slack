@@ -15,6 +15,11 @@ jobs:
           - name: Checking Out Code Repo
             uses: actions/checkout@v2
 
+          - name: Installing Pre-Reqs
+            run: |
+              echo "Installing pre-reqs..."
+              sudo apt-get update && sudo apt-get install -y curl unzip grep
+
           - name: Downloading Veracode CLI
             run: |
               echo '[INFO] --- Downloading Veracode CLI (Latest Version)...'
@@ -65,6 +70,7 @@ jobs:
                 echo "\n}" > payload.json
               fi
               cat payload.json
+              curl -X POST -H 'Content-type: application/json' --data '{"text":"Testing this process!"}' $SLACK_WEBHOOK_URL
             env:
               SLACK_WEBHOOK_URL: ${{ SECRETS.SLACK_WEBHOOK_URL }}
 
