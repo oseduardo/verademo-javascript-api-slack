@@ -70,7 +70,8 @@ jobs:
                 echo "\n}" > payload.json
               fi
               cat payload.json
-              curl -X POST -H 'Content-type: application/json' --data '{"text":"Testing this process!"}' $SLACK_WEBHOOK_URL
+              #curl -X POST -H 'Content-type: application/json' --data '{"text":"Testing this process!"}' $SLACK_WEBHOOK_URL
+              curl -X POST -H 'Content-type: application/json' $SLACK_WEBHOOK_URL < payload.json
             env:
               SLACK_WEBHOOK_URL: ${{ SECRETS.SLACK_WEBHOOK_URL }}
 
