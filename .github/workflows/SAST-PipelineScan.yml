@@ -45,7 +45,11 @@ jobs:
               export VERACODE_API_KEY_ID=$VID
               export VERACODE_API_KEY_SECRET=$VKEY
               ./veracode static scan ./verascan/veracode-auto-pack-*-js.zip --results-file results.json --summary-output summary_results.txt --fail-on-severity "Very High, High"
-              cat summary_results.txt
             env:
               VID: ${{ SECRETS.VID }}
               VKEY: ${{ SECRETS.VKEY }}
+
+          - name: Results Validation
+            if: always()
+            run: |
+              cat summary_results.txt
