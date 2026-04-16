@@ -71,6 +71,7 @@ jobs:
 
           # Publishing artifacts - Payload file
           - name: Step 3 - Use the Upload Artifact GitHub Action
+            if: success()
             uses: actions/upload-artifact@v4
             with: 
               name: mySlackPayloadArtifact
