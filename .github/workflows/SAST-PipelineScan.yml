@@ -35,7 +35,7 @@ jobs:
               echo "[INFO] --- Packaging artifacts to be scanned"
               export VERACODE_API_KEY_ID=$VID
               export VERACODE_API_KEY_SECRET=$VKEY
-              ./veracode package --source . --output ./verascan/ --trust --verbose
+              ./veracode package --source . --output ./verascan/ --trust
               ls -all ./verascan/
             env:
               VID: ${{ SECRETS.VID }}
@@ -50,4 +50,3 @@ jobs:
             env:
               VID: ${{ SECRETS.VID }}
               VKEY: ${{ SECRETS.VKEY }}
-
