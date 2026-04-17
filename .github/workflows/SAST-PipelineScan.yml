@@ -88,7 +88,7 @@ jobs:
               fi
               curl -X POST -H 'Content-type: application/json' \
                 --data "$payload" \
-                $TEAMS_WEBHOOK_URL
+                "$TEAMS_WEBHOOK_URL"
             env:
               SLACK_WEBHOOK_URL: ${{ SECRETS.SLACK_WEBHOOK_URL }}
 
