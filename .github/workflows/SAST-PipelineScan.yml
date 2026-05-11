@@ -75,6 +75,7 @@ jobs:
               SLACK_WEBHOOK_URL: ${{ SECRETS.SLACK_WEBHOOK_URL }}
 
           - name: Teams Notification
+            if: always()
             run: |
               cat summary_results.txt
 
