@@ -74,22 +74,23 @@ jobs:
             env:
               SLACK_WEBHOOK_URL: ${{ SECRETS.SLACK_WEBHOOK_URL }}
 
-#          - name: Teams Notification
-#            run: |
-#              cat summary_results.txt
+          - name: Teams Notification
+            if: always()
+            run: |
+              cat summary_results.txt
 
-#              if [ ! -f "summary_results.txt" ]; then
-#                echo "[INFO] --- There are no flaws in the artifact!!"
-#              else
-#                # Use summary_results.txt to prepare the payload
-#                content=$(sed -e 's/\//\//g' -e 's/"/\\"/g' -e ':a;N;$!ba;s/\n/\\n/g' < summary_results.txt)
-#                payload="{\"text\": \"$content\"}"
-#              fi
-#              curl -X POST -H 'Content-type: application/json' \
-#                --data '$payload' \
-#                "$TEAMS_WEBHOOK_URL"
-#            env:
-#              SLACK_WEBHOOK_URL: ${{ SECRETS.SLACK_WEBHOOK_URL }}
+              if [ ! -f "summary_results.txt" ]; then
+                echo "[INFO] --- There are no flaws in the artifact!!"
+              else
+                # Use summary_results.txt to prepare the payload
+                jq -Rs -c '{text: .}' summary_results.txt > payload.json
+              fi
+              
+              curl -X POST "$TEAMS_WEBHOOK_URL" \
+                -H "Content-Type: application/json" \
+                --data-binary @payload.json
+            env:
+              TEAMS_WEBHOOK_URL: ${{ SECRETS.TEAMS_WEBHOOK_URL }}
 
 
           # Publishing artifacts - Payload file
